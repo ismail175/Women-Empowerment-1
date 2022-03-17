@@ -33,7 +33,7 @@ public class PublicationController {
     public void deletePublication (@PathVariable("id") int idPublication){publicationservice.deletePublication(idPublication);}
 
     // http://localhost:8081/SpringMVC/publication/modify-publication
-    @PutMapping("/modify-publication")
+    @PutMapping("/update-publication")
     @ResponseBody
     public Publication updatePublication(@RequestBody Publication p){
         return publicationservice.updatePublication(p);

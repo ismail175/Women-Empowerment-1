@@ -33,7 +33,7 @@ public class CommentaryController {
     public void deleteCommentary (@PathVariable("id") int idCommentary){commentaryservice.deleteCommentary(idCommentary);}
 
     // http://localhost:8081/SpringMVC/commentary/modify-commentary
-    @PutMapping("/modify-commentary")
+    @PutMapping("/update-commentary")
     @ResponseBody
     public Commentary updateCommentary(@RequestBody Commentary c){
         return commentaryservice.updateCommentary(c);
