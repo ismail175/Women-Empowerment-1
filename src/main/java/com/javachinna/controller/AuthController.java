@@ -57,6 +57,7 @@ public class AuthController {
 			log.error("Exception Ocurred", e);
 			return new ResponseEntity<>(new ApiResponse(false, "Email Address already in use!"), HttpStatus.BAD_REQUEST);
 		}
+
 		return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
 	}
 }

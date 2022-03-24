@@ -24,7 +24,6 @@ import com.javachinna.util.CookieUtils;
 
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-
 	private TokenProvider tokenProvider;
 
 	private AppProperties appProperties;
@@ -33,7 +32,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
 	@Autowired
 	OAuth2AuthenticationSuccessHandler(TokenProvider tokenProvider, AppProperties appProperties,
-			HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) {
+									   HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) {
 		this.tokenProvider = tokenProvider;
 		this.appProperties = appProperties;
 		this.httpCookieOAuth2AuthorizationRequestRepository = httpCookieOAuth2AuthorizationRequestRepository;

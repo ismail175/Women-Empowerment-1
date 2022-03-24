@@ -17,7 +17,6 @@ import lombok.Data;
 public class SignUpRequest {
 
 	private Long userID;
-
 	private String providerUserId;
 
 	@NotEmpty
@@ -28,6 +27,7 @@ public class SignUpRequest {
 
 	private SocialProvider socialProvider;
 
+
 	@Size(min = 6, message = "{Size.userDto.password}")
 	private String password;
 
@@ -37,7 +37,7 @@ public class SignUpRequest {
 
 	private Profession profession;
 
-	public SignUpRequest(String providerUserId, String displayName, String email, String password, SocialProvider socialProvider,Profession profession) {
+	public SignUpRequest(String providerUserId, String displayName, String email, String password, SocialProvider socialProvider) {
 		this.providerUserId = providerUserId;
 		this.displayName = displayName;
 		this.email = email;
@@ -73,23 +73,23 @@ public class SignUpRequest {
 			return this;
 		}
 
-		public Builder addPassword(final String password) {
-			this.password = password;
-			return this;
-		}
-
 		public Builder addSocialProvider(final SocialProvider socialProvider) {
 			this.socialProvider = socialProvider;
 			return this;
 		}
 
+		public Builder addPassword(final String password) {
+			this.password = password;
+			return this;
+		}
+
+
 		public Builder addProfession(final Profession profession) {
 			this.profession = profession;
 			return this;
 		}
-
 		public SignUpRequest build() {
-			return new SignUpRequest(providerUserID, displayName, email, password, socialProvider,profession);
+			return new SignUpRequest(providerUserID, displayName, email, password, socialProvider);
 		}
 	}
 }

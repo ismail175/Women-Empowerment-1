@@ -1,18 +1,17 @@
 package com.javachinna.service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
 
 import com.javachinna.dto.LocalUser;
 import com.javachinna.dto.SignUpRequest;
@@ -42,6 +41,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+
 
 	@Override
 	@Transactional(value = "transactionManager")
@@ -114,8 +115,17 @@ public class UserServiceImpl implements UserService {
 				.addSocialProvider(GeneralUtils.toSocialProvider(registrationId)).addPassword("changeit").build();
 	}
 
+	public List<User> findAll() {
+		List<User> list = new ArrayList<>();
+		//emailSenderService.sendMail("anonymousmega04@gmail.com","this is an email", "claim");
+		userRepository.findAll().iterator().forEachRemaining(list::add);
+		return list;
+	}
+
 	@Override
 	public Optional<User> findUserById(Long id) {
 		return userRepository.findById(id);
 	}
+
+
 }
