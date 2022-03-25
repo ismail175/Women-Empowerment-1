@@ -6,4 +6,5 @@ import tn.pidev.womenemp.entities.Publication;
 
 @Repository
 public interface PublicationRepository extends CrudRepository<Publication, Integer> {
+
 }

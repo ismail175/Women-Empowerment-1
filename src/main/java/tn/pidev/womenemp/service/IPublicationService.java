@@ -10,4 +10,6 @@ public interface IPublicationService {
     void deletePublication(int idPublication);
     Publication updatePublication(Publication p);
     Publication retrievePublication(int idPublication);
+
+
 }

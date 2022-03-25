@@ -3,11 +3,13 @@ package tn.pidev.womenemp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
+import tn.pidev.womenemp.entities.Advertising;
 import tn.pidev.womenemp.entities.Publication;
 import tn.pidev.womenemp.service.IPublicationService;
 
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/publication")
 public class PublicationController {
@@ -25,7 +27,8 @@ public class PublicationController {
     // http://localhost:8081/SpringMVC/publication/add-publication
     @PostMapping("/add-publication")
     @ResponseBody
-    public Publication addPublication(@RequestBody Publication p){ return publicationservice.addPublication(p); }
+    public Publication addPublication(@RequestBody Publication p) { return publicationservice.addPublication(p); }
+
 
     // http://localhost:8081/SpringMVC/publication/remove-publication/{id}
     @DeleteMapping("/remove-publication/{id}")
