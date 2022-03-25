@@ -2,9 +2,8 @@ package com.javachinna.service;
 
 import java.util.*;
 
-import net.bytebuddy.utility.RandomString;
+import com.javachinna.model.Profession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
@@ -127,5 +126,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findById(id);
 	}
 
+	@Override
+	public List<Object> nbrUserByProfession(Profession profession) {
+		return userRepository.nbrUserByProfession (profession);
+	}
 
 }

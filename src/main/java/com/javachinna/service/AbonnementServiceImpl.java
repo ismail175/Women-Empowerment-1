@@ -1,5 +1,10 @@
 package com.javachinna.service;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.javachinna.model.Abonement;
 import com.javachinna.model.User;
 import com.javachinna.repo.AbonementRepository;
@@ -9,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -88,17 +96,25 @@ public class AbonnementServiceImpl implements AbonnementService{
             Date ddd = Date.from (currentdDate1.plusMonths (i).atStartOfDay (defaultZoneId).toInstant ());
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(ddd);
-            Calendar calLast = Calendar.getInstance ();;
+            Calendar calLast = Calendar.getInstance();
             Calendar calFirst = calendar;
-            calLast.set (Calendar.DATE, calLast.getActualMaximum (Calendar.DATE));
-            calFirst.set (Calendar.DATE, calFirst.getActualMinimum (Calendar.DATE));
+            calLast.set (Calendar.DATE, calendar.getActualMaximum (Calendar.DATE));
+            calFirst.set (Calendar.DATE, calendar.getActualMinimum (Calendar.DATE));
 
             Date lastDayOfMonth = calLast.getTime ();
             Date firstDayOfMonth = calFirst.getTime ();
+
 
             stat.add(abonementRepository.nbrAbonementByLevel (firstDayOfMonth,lastDayOfMonth));
         }
 
         return stat;
+    }
+
+    public void generateQRCodeImage(String url, int width, int height, String filePath) throws WriterException, IOException {
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, width, height);
+        Path path = FileSystems.getDefault().getPath(filePath);
+        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
     }
 }

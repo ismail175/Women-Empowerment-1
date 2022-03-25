@@ -5,8 +5,12 @@ import com.javachinna.model.User;
 import com.javachinna.repo.AbonementRepository;
 import com.javachinna.repo.UserRepository;
 import com.javachinna.service.AbonnementService;
+import com.sun.jdi.LongValue;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,7 +59,26 @@ public class AbonementController {
     @ApiOperation(value = "abonementByLevel")
     @GetMapping("/abonementByLevel")
     public List<Object> nbrAbonementByLevel() {
+
+
         return abonnementService.nbrAbonementByLevel ();
     }
+
+    private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
+
+
+    @GetMapping(value = "/genrateQRCode/{codeText}/{width}/{height}")
+    @ResponseBody
+    public ResponseEntity<byte[]> generateQRCode(
+            @RequestParam("id_subscrption") Long id_subscrption,
+            @PathVariable("width") Integer width,
+            @PathVariable("height") Integer height)
+            throws Exception {
+        Abonement abonement=abonnementService.retrieveSubscription (id_subscrption);
+        String path= abonement.getContenu () + " " + abonement.getLevel ()+" "+abonement.getDatedebut ().toString ()+" "+abonement.getDatefin ().toString ()+" "+abonement.getUsers ().toString ();
+        return ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(path, width, height));
+    }
+
+
 
 }
