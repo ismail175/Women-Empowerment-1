@@ -1,8 +1,10 @@
 package com.javachinna.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.javachinna.model.Profession;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 
@@ -24,4 +26,6 @@ public interface UserService {
 	Optional<User> findUserById(Long id);
 
 	LocalUser processUserRegistration(String registrationId, Map<String, Object> attributes, OidcIdToken idToken, OidcUserInfo userInfo);
+
+    List<Object> nbrUserByProfession(Profession profession);
 }

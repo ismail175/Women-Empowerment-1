@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.javachinna.dto.SocialProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
-import com.javachinna.dto.SocialProvider;
+
 import com.javachinna.exception.OAuth2AuthenticationProcessingException;
 import com.javachinna.service.UserService;
 

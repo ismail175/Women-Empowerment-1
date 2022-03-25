@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.javachinna.dto.SocialProvider;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.javachinna.dto.LocalUser;
-import com.javachinna.dto.SocialProvider;
+
 import com.javachinna.dto.UserInfo;
 import com.javachinna.model.Role;
 import com.javachinna.model.User;

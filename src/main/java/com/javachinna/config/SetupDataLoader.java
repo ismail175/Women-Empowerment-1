@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Set;
 
 import com.javachinna.model.Profession;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -12,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.javachinna.dto.SocialProvider;
+
 import com.javachinna.model.Role;
 import com.javachinna.model.User;
 import com.javachinna.repo.RoleRepository;
@@ -55,7 +57,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user.setEmail(email);
 			user.setPassword(passwordEncoder.encode("admin@"));
 			user.setRoles(roles);
-			user.setProvider(SocialProvider.LOCAL.getProviderType());
+
 			user.setEnabled(true);
 			Date now = Calendar.getInstance().getTime();
 			user.setCreatedDate(now);

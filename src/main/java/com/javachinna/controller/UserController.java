@@ -1,45 +1,44 @@
 package com.javachinna.controller;
 
+import com.javachinna.model.Profession;
+import com.javachinna.model.User;
+import com.javachinna.service.UserServiceImpl;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.javachinna.config.CurrentUser;
 import com.javachinna.dto.LocalUser;
 import com.javachinna.util.GeneralUtils;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
 
-	@GetMapping("/user/me")
-	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> getCurrentUser(@CurrentUser LocalUser user) {
-		return ResponseEntity.ok(GeneralUtils.buildUserInfo(user));
+	@Autowired
+	private UserServiceImpl userService;
+
+
+	@RequestMapping(value="/users", method = RequestMethod.GET)
+	public List<User> listUser(){
+		return userService.findAll();
 	}
 
-	@GetMapping("/all")
-	public ResponseEntity<?> getContent() {
-		return ResponseEntity.ok("Public content goes here");
+	@RequestMapping(value = "/users/{email}", method = RequestMethod.GET)
+	public User getOne(@PathVariable(value = "email") String email) {
+		//return modelMapper.map(userService.findById(id),UserDto.class);
+		return userService.findUserByEmail (email);
 	}
 
-	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> getUserContent() {
-		return ResponseEntity.ok("User content goes here");
-	}
-
-	@GetMapping("/admin")
-	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> getAdminContent() {
-		return ResponseEntity.ok("Admin content goes here");
-	}
-
-	@GetMapping("/mod")
-	@PreAuthorize("hasRole('MODERATOR')")
-	public ResponseEntity<?> getModeratorContent() {
-		return ResponseEntity.ok("Moderator content goes here");
+	@ApiOperation(value = "nbrUserByProfession")
+	@GetMapping("/getNombrsCandidacy/{professeion}")
+	@ResponseBody
+	public List<Object> nbrUserByProfession(@PathVariable(name = "professeion") Profession professeion)
+	{
+		return userService.nbrUserByProfession (professeion);
 	}
 }
