@@ -1,5 +1,5 @@
 package com.javachinna.model;
 
 public enum Profession {
-    DOCTOR,STUDENT,ENGINEER,OTHER,PROFESSOR
+    DOCTOR,STUDENT,ENGINEER,PROFESSOR,OTHER
 }
