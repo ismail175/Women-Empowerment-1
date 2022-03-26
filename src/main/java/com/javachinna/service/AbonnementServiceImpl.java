@@ -11,13 +11,11 @@ import com.javachinna.repo.AbonementRepository;
 import com.javachinna.repo.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -31,6 +29,7 @@ public class AbonnementServiceImpl implements AbonnementService{
 
     @Autowired
     AbonementRepository abonementRepository;
+
 
     @Autowired
     UserRepository userRepository;
@@ -110,6 +109,8 @@ public class AbonnementServiceImpl implements AbonnementService{
 
         return stat;
     }
+
+
 
     public void generateQRCodeImage(String url, int width, int height, String filePath) throws WriterException, IOException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
