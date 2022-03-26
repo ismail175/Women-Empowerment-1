@@ -78,7 +78,7 @@ public class AbonementController {
         String path= abonement.getContenu () + " " + abonement.getLevel ()+" "+abonement.getDatedebut ().toString ()+" "+abonement.getDatefin ().toString ()+" "+abonement.getUsers ().toString ();
         return ResponseEntity.status(HttpStatus.OK).body(QRCodeGenerator.getQRCodeImage(path, width, height));
     }
-
+// youuuu
 
 
 }
