@@ -43,8 +43,11 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		// Create initial roles
 		Role userRole = createRoleIfNotFound(Role.ROLE_USER);
 		Role adminRole = createRoleIfNotFound(Role.ROLE_ADMIN);
-		Role modRole = createRoleIfNotFound(Role.ROLE_MODERATOR);
-		createUserIfNotFound("admin@javachinna.com", Set.of(userRole, adminRole, modRole));
+		createUserIfNotFound("rafed.chraiti@esprit.tn", Set.of(userRole, adminRole));
+		createUserIfNotFound("ismail.bouchahoua@esprit.tn", Set.of(userRole, adminRole));
+		createUserIfNotFound("chihebeddine.allouche@esprit.tn ", Set.of(userRole, adminRole));
+		createUserIfNotFound("youssef.kehili@esprit.tn ", Set.of(userRole, adminRole));
+		createUserIfNotFound("mohamedali.guesmi@esprit.tn", Set.of(userRole, adminRole));
 		alreadySetup = true;
 	}
 
@@ -55,7 +58,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user = new User();
 			user.setDisplayName("Admin");
 			user.setEmail(email);
-			user.setPassword(passwordEncoder.encode("admin@"));
+			user.setPassword(passwordEncoder.encode("esprit"));
 			user.setRoles(roles);
 
 			user.setEnabled(true);
@@ -64,6 +67,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user.setModifiedDate(now);
 			user.setProfession (Profession.DOCTOR);
 			user = userRepository.save(user);
+
+
 		}
 		return user;
 	}

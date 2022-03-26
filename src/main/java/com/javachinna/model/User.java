@@ -2,12 +2,14 @@ package com.javachinna.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -65,4 +67,6 @@ public class User implements Serializable {
 
 	@ManyToMany(mappedBy="users", cascade = CascadeType.ALL)
 	private Set<Abonement> abonements;
+
+
 }
