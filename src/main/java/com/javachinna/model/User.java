@@ -68,5 +68,9 @@ public class User implements Serializable {
 	@ManyToMany(mappedBy="users", cascade = CascadeType.ALL)
 	private Set<Abonement> abonements;
 
+	@ManyToMany(mappedBy="users", cascade=CascadeType.ALL)
+	@JsonIgnore
+	private Set<Training> trainings;
+
 
 }
